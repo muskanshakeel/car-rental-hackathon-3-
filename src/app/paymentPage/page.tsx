@@ -89,9 +89,10 @@ export default function Page() {
                 <label className="font-bold" htmlFor="add">
                   Locations
                 </label>
+
                 <select
                   title="city"
-                  className="bg-[#f6f7f9] px-8 h-[56px] rounded-xl"
+                  className="bg-[#f6f7f9] text-[#90A3BF] px-8 h-[56px] border-2 rounded-xl"
                 >
                   <option value="">Select Your City</option>
                 </select>
@@ -102,7 +103,7 @@ export default function Page() {
                 </label>
                 <select
                   title="cty"
-                  className="bg-[#f6f7f9] px-8 h-[56px] rounded-xl"
+                  className="bg-[#f6f7f9] text-[#90A3BF] px-8 h-[56px] border-2 rounded-xl"
                 >
                   <option value="">Select Your Date</option>
                 </select>
@@ -115,7 +116,7 @@ export default function Page() {
                 </label>
                 <select
                   title="cit"
-                  className="bg-[#f6f7f9] px-8 h-[56px] rounded-xl"
+                  className="bg-[#f6f7f9] text-[#90A3BF] px-8 h-[56px] border-2 rounded-xl"
                 >
                   <option value="">Select Your Time</option>
                 </select>
@@ -136,7 +137,7 @@ export default function Page() {
                 </label>
                 <select
                   title="city"
-                  className="bg-[#f6f7f9] px-8 h-[56px] rounded-xl"
+                  className="bg-[#f6f7f9] text-[#90A3BF] px-8 h-[56px] border-2 rounded-xl"
                 >
                   <option value="">Select Your City</option>
                 </select>
@@ -147,7 +148,7 @@ export default function Page() {
                 </label>
                 <select
                   title="cty"
-                  className="bg-[#f6f7f9] px-8 h-[56px] rounded-xl"
+                  className="bg-[#f6f7f9] text-[#90A3BF] px-8 h-[56px] border-2 rounded-xl"
                 >
                   <option value="">Select Your Date</option>
                 </select>
@@ -160,7 +161,7 @@ export default function Page() {
                 </label>
                 <select
                   title="cit"
-                  className="bg-[#f6f7f9] px-8 h-[56px] rounded-xl"
+                  className="bg-[#F6F7F9] text-[#90A3BF] px-8 h-[56px] border-2 rounded-xl"
                 >
                   <option value="">Select Your Time</option>
                 </select>

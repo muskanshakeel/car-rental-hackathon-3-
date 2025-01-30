@@ -1,4 +1,6 @@
 "use client";
+
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +15,7 @@ import {
 import Sidebar from "../../components/Sidebar";
 
 export default function Page() {
+
   const [showMore, setShowMore] = useState(false);
 
   const toggleShowMore = () => {
@@ -54,6 +57,8 @@ export default function Page() {
         </section>
         <section className="popular w-full flex flex-col gap-4">
           <div className="sec grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          
             <Card className="w-full max-w-[304px] mx-auto h-auto flex flex-col justify-between">
               <CardHeader>
                 <CardTitle className="w-full flex items-center justify-between">

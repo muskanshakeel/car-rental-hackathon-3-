@@ -1,8 +1,12 @@
-"use client";
+'use client';  // Add this at the top to make the component a client-side component
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Car } from "@/types/car";
+import { client } from "@/sanity/lib/client";
+import { carsQuery } from "@/sanity/lib/queries";
+
 import {
   Card,
   CardContent,
@@ -11,8 +15,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
+import { urlFor } from "@/sanity/lib/image";
 
+// Client-side component
 export default function Home() {
+  const [carData, setCarData] = useState<Car[]>([]);
+
+  useEffect(() => {
+    async function fetchCarData() {
+      const fetchedCarData: Car[] = await client.fetch(carsQuery);
+      setCarData(fetchedCarData);
+    }
+
+    fetchCarData();
+  }, []);
+
+
+  
   useEffect(() => {
     const sections = document.querySelectorAll(
       "#block1, #block2, #block3, #block4, #block5"
@@ -54,7 +73,9 @@ export default function Home() {
             height={360}
             className="max-w-full"
           />
-         
+          <button className="absolute bottom-20 left-1 m-3 bg-blue-600 hover:bg-blue-500 text-white font-normal py-4 px-6 rounded hidden lg:block">
+            Rental Car
+          </button>
         </div>
 
         <div className="relative flex flex-col items-center">
@@ -65,7 +86,9 @@ export default function Home() {
             height={360}
             className="max-w-full"
           />
-          
+          <button className="absolute bottom-20 left-1 m-3 bg-blue-400 hover:bg-blue-600 text-white font-normal py-4 px-6 rounded hidden lg:block">
+            Rental Car
+          </button>
         </div>
       </section>
 
@@ -83,7 +106,7 @@ export default function Home() {
 
         {/* switch */}
         <div className="w-[60px] h-[60px] bg-blue-600 hover:bg-blue-500 rounded-lg flex items-center justify-center">
-          <Image src="/Switch.png" alt="Switch" width={240} height={200} className="max-w-full" />
+          <Image src="/Switch.png" alt="Switch" width={24} height={24} className="w-[24px] h-[24px]" />
         </div>
 
         <Image
@@ -106,114 +129,41 @@ export default function Home() {
           </Link>
         </div>
         <div className="sec grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="w-full max-w-[304px] mx-auto h-auto flex flex-col justify-between">
-            <CardHeader>
-              <CardTitle className="w-full flex items-center justify-between">
-                Koenigsegg{" "}
-                <Image src={"/heart.png"} alt="" width={20} height={20} />
-              </CardTitle>
-              <CardDescription>Sport</CardDescription>
-            </CardHeader>
-            <CardContent className="w-full flex flex-col items-center justify-center gap-4">
-              <Image src={"/car1.png"} alt="" width={220} height={68} />
-              <Image src={"/spec1.png"} alt="" width={256} height={24} />
-            </CardContent>
-            <CardFooter className="w-full flex items-center justify-between">
-              <p className="text-2xl font-semibold leading-none tracking-tight">
-                $99.00/
-                <span className="text-sm font-medium text-gray-500">day</span>
-              </p>
-              <Link href={"/detailPage"}>
-                <button className="bg-[#3563e9] p-2 text-white rounded-md">
-                  Rent Now
-                </button>
-              </Link>
-            </CardFooter>
-          </Card>
+              {carData.map((car) => (
+                        <div key={car._id}>
+                             <CardTitle className="w-full flex items-center justify-between">{car.name}
+                             </CardTitle>
+                         
+                             <CardDescription>{car.type}</CardDescription>
+                             {car.image &&(
+                            <Image
+                            src={urlFor(car.image).url()}
+                            alt="carimage"
+                            width={240} 
+                            height={24}
+                            />
+                          )}
 
-          <Card className="w-full max-w-[304px] mx-auto h-auto flex flex-col justify-between">
-            <CardHeader>
-              <CardTitle className="w-full flex items-center justify-between">
-                NissanGT - R{" "}
-                <Image src={"/heart 2.png"} alt="" width={20} height={20} />
-              </CardTitle>
-              <CardDescription>Sport</CardDescription>
-            </CardHeader>
-            <CardContent className="w-full flex flex-col items-center justify-center gap-4">
-              <Image src={"/car2.png"} alt="" width={220} height={68} />
-              <Image src={"/spec2.png"} alt="" width={256} height={24} />
-            </CardContent>
-            <CardFooter className="w-full flex items-center justify-between">
-              <p className="text-2xl font-semibold leading-none tracking-tight">
-                $80.00/
-                <span className="text-sm font-medium text-gray-500">day</span>
-                <br />
-                <span className="text-sm font-medium text-gray-500 line-through">
-                  $100.00
-                </span>
-              </p>
-              <Link href={"/detailPage"}>
-                <button className="bg-[#3563e9] p-2 text-white rounded-md">
+                         <div className="flex flex-row gap-9 justify-start items-start"><p className="text-gray-500"> {car.fuelCapacity} </p>
+                         <p>{car.transmission}</p> 
+                          <p>{car.seatingCapacity}</p>
+                          </div>
+                          <p className=" pt-3 text-2xl font-bold leading-none tracking-tight">{car.pricePerDay}</p>  
+                          
+                          <p className=" flex items-center justify-center pt-2 text-black font-samibold">{car.tags}</p>
+                          <br/>
+                          <Link href={"/detailPage"}>
+                <button className="flex justify-center items-center  bg-[#3563e9] p-2 text-white rounded-md">
                   Rent Now
                 </button>
               </Link>
-            </CardFooter>
-          </Card>
-
-          <Card className="w-full max-w-[304px] mx-auto h-auto flex flex-col justify-between">
-            <CardHeader>
-              <CardTitle className="w-full flex items-center justify-between">
-                Rolls-Royce{" "}
-                <Image src={"/heart.png"} alt="" width={20} height={20} />
-              </CardTitle>
-              <CardDescription>Sedan</CardDescription>
-            </CardHeader>
-            <CardContent className="w-full flex flex-col items-center justify-center gap-4">
-              <Image src={"/car3.png"} alt="" width={220} height={68} />
-              <Image src={"/spec3.png"} alt="" width={256} height={24} />
-            </CardContent>
-            <CardFooter className="w-full flex items-center justify-between">
-              <p className="text-2xl font-semibold leading-none tracking-tight">
-                $96.00/
-                <span className="text-sm font-medium text-gray-500">day</span>
-              </p>
-              <Link href={"/detailPage"}>
-                <button className="bg-[#3563e9] p-2 text-white rounded-md">
-                  Rent Now
-                </button>
-              </Link>
-            </CardFooter>
-          </Card>
-
-          <Card className="w-full max-w-[304px] mx-auto h-auto flex flex-col justify-between">
-            <CardHeader>
-              <CardTitle className="w-full flex items-center justify-between">
-                NissanGT - R{" "}
-                <Image src={"/heart 2.png"} alt="" width={20} height={20} />
-              </CardTitle>
-              <CardDescription>Sport</CardDescription>
-            </CardHeader>
-            <CardContent className="w-full flex flex-col items-center justify-center gap-4">
-              <Image src={"/car4.png"} alt="" width={220} height={68} />
-              <Image src={"/spec4.png"} alt="" width={256} height={24} />
-            </CardContent>
-            <CardFooter className="w-full flex items-center justify-between">
-              <p className="text-2xl font-semibold leading-none tracking-tight">
-                $80.00/
-                <span className="text-sm font-medium text-gray-500">day</span>
-                <br />
-                <span className="text-sm font-medium text-gray-500 line-through">
-                  $100.00
-                </span>
-              </p>
-              <Link href={"/detailPage"}>
-                <button className="bg-[#3563e9] p-2 text-white rounded-md">
-                  Rent Now
-                </button>
-              </Link>
-            </CardFooter>
-          </Card>
+                        </div>
+              )
+                
+              )}
+          
         </div>
+        
       </section>
 
       {/* Recommendation car */}
