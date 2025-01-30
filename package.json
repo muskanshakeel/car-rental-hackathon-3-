@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-     "import-data": "node scripts/importTemplate7Data.mjs"
+    "import-data": "node scripts/importTemplate7Data.mjs"
   },
   "dependencies": {
     "@sanity/client": "^6.25.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.70.0",
+    "@shadcn/ui": "^0.0.4",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
