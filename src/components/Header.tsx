@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <div className="h-auto w-full flex flex-wrap items-center justify-between px-4 py-4 bg-white">
+    <div className="h-auto  w-full flex flex-wrap items-center justify-between px-4 py-4 bg-white">
       {/* Logo */}
       <div className="w-[120px] h-[40px] flex-shrink-0">
         <Image
@@ -11,7 +11,7 @@ export default function Header() {
           alt="Logo"
           width={120}
           height={40}
-          className="object-contain ml-4"
+          className="w-full h-full object-contain ml-4"
         />
       </div>
 
@@ -22,19 +22,21 @@ export default function Header() {
           alt="Search"
           width={20}
           height={20}
+          className="w-[20px] h-[20px]"
         />
         <input
           type="text"
           placeholder="Search something here"
           className="flex-1 bg-transparent border-none outline-none text-sm px-2 w-[492px] h-[44px]"
         />
-        <Image src="/filter.png" alt="Filter" width={20} height={20} />
+        <Image src="/filter.png" alt="Filter" width={20} height={20}
+        className="w-[20px] h-[20px]"/>
       </div>
 
       {/* Profile Icons */}
       <div className="flex items-center space-x-4 mt-4 md:mt-0">
         <a href="#">
-          <Image src="/Like.png" alt="Like" width={36} height={36} />
+          <Image src="/Like.png" alt="Like" width={36} height={36} className="w-[36px] h-[36px]" />
         </a>
         <a href="#">
           <Image
@@ -42,6 +44,7 @@ export default function Header() {
             alt="Notification"
             width={36}
             height={36}
+            className="w-[36px] h-[36px]"
           />
         </a>
         <a href="#">
@@ -50,15 +53,16 @@ export default function Header() {
             alt="Settings"
             width={36}
             height={36}
+            className="w-[36px] h-[36px]"
           />
         </a>
         <a href="#">
           <Image
             src="/profile.png"
-            alt="Profile"
+            alt="profile"
             width={44}
             height={44}
-            className="rounded-full"
+            className="w-[44px] h-44px rounded-full"
           />
         </a>
       </div>

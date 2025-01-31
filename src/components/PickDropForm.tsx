@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 export default function PickDropForm() {
-  const [pickUpDate, setPickUpDate] = useState("20 July 2022");
-  const [pickUpTime, setPickUpTime] = useState("07.00");
-  const [dropOffDate, setDropOffDate] = useState("21 July 2022");
-  const [dropOffTime, setDropOffTime] = useState("01.00");
+  const [] = useState("20 July 2022");
+  const [] = useState("07.00");
+  const [] = useState("21 July 2022");
+  const [] = useState("01.00");
 
   return (
     <div>
@@ -14,21 +14,9 @@ export default function PickDropForm() {
       <div className="mb-6">
         <SectionHeader title="Pick - Up" color="bg-blue-500" />
         <div className="flex flex-col-3 justify-between">
-          <DropdownField
-            label="Locations"
-            value="Kota Semarang"
-            disabled
-          />
-          <DropdownField
-            label="Date"
-            value={pickUpDate}
-            onChange={(e) => setPickUpDate(e.target.value)}
-          />
-          <DropdownField
-            label="Time"
-            value={pickUpTime}
-            onChange={(e) => setPickUpTime(e.target.value)}
-          />
+          <DropdownField label="Locations" value="Kota Semarang" disabled />
+          <DropdownField label="Date" value="20 July 2022" disabled />
+          <DropdownField label="Time" value="07.00" disabled />
         </div>
       </div>
 
@@ -36,21 +24,9 @@ export default function PickDropForm() {
       <div>
         <SectionHeader title="Drop - Off" color="bg-blue-300" />
         <div className="flex flex-col-3 justify-between">
-          <DropdownField
-            label="Locations"
-            value="Kota Semarang"
-            disabled
-          />
-          <DropdownField
-            label="Date"
-            value={dropOffDate}
-            onChange={(e) => setDropOffDate(e.target.value)}
-          />
-          <DropdownField
-            label="Time"
-            value={dropOffTime}
-            onChange={(e) => setDropOffTime(e.target.value)}
-          />
+          <DropdownField label="Locations" value="Kota Semarang" disabled />
+          <DropdownField label="Date" value="21 July 2022" disabled />
+          <DropdownField label="Time" value="01.00" disabled />
         </div>
       </div>
     </div>

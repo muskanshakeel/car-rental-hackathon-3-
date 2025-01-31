@@ -110,16 +110,17 @@ const Sidebar = () => {
       <div className="mb-6">
         <h3 className="mb-4 text-sm font-semibold text-gray-400">Price</h3>
         <input
-          type="range"
-          min="0"
-          max="150"
-          value={priceRange}
-          onChange={(e) => setPriceRange(Number(e.target.value))}
-          className="w-full accent-blue-500"
-        />
+  type="range"
+  min="0"
+  max="150"
+  value={priceRange}
+  onChange={(e) => setPriceRange(parseFloat(e.target.value))}
+  className="w-full accent-blue-500"
+/>
+
         <div className="flex justify-between items-center mb-4">
           <span className="space-y-4 text-xl font-semibold text-gray-500">
-            Max. ${priceRange}.00
+            Max. ${100}.00
           </span>
         </div>
       </div>
